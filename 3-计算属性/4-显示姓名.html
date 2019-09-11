@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        Name---{{fullName}}<br/>
+        计算属性的缓存--{{now}}<br />
+        通过method拿时间戳:<br />
+        ---方法未加括号--{{thisTime}}<br />
+        ---方法加括号--{{thisTime()}}<br />
+    </div>
+    <script>
+        //'123,456,789'变成'789,456,123'
+        var app1 = new Vue({
+            el: '#demo',
+            data: {
+                firstName: 'Wu',
+                lastName: 'ZheHan'
+            },
+            computed: {
+                //计算属性默认用法是getter函数
+                // fullName: function () {
+                //     return this.firstName + ' ' + this.lastName
+                // }
+                fullName:{
+                    get:function(){
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    set:function(newValue){
+                        var names = newValue.split(',')
+                        this.firstName = names[0]
+                        this.lastName = names[1]
+                    }
+                },
+                now:function(){
+                    return Date.now()
+                }
+            },
+            methods:{
+                thisTime:function(){
+                    return Date.now()
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

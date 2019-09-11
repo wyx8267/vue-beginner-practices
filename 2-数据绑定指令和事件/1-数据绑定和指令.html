@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}<br />
+        {{(7+5)*6}}--运算<br />
+        7>5 ? a:msg---{{7>5 ? a:msg}}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                a: 6
+            },
+            created: function () {
+                // alert('创建完成，还未挂载到DOM')
+            },
+            mounted: function () {
+                // alert('已挂载到DOM，还未渲染')
+            }
+        })
+        console.log(app.$el)
+        console.log(app.$data)
+        console.log(app.msg)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .red{
+            width: 100px;
+            height: 20px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dateApp">
+        {{date}} <br />
+        {{date | formatDate}}<br />
+        {{date | format2(66,99)}}<br />
+        <hr/>
+        v-text指令：<span v-text="demoon"></span><br />
+        v-html指令：<span v-html="bluev"></span><br />
+        <div v-bind:class="className">v-bind指令</div>
+        v-on指令：<button v-on:click="count">{{countNum}}</button>
+    </div>
+
+    <script>
+        //实时显示时间
+        var plusDate = (value) => {
+            return value < 10 ? '0' + value : value
+        }
+        var app = new Vue({
+            el: '#dateApp',
+            data: {
+                date: new Date(),
+                demoon: 'DEMOON',
+                bluev: '<span style="color:#ace;">BLUEV</span>',
+                className: 'red',
+                countNum:0
+            },
+            //定义过滤器
+            filters: {
+                formatDate: function (value) {
+                    let date = new Date(value)
+                    let year = date.getFullYear()
+                    let month = plusDate(date.getMonth() + 1)
+                    let day = plusDate(date.getDate())
+                    let hours = plusDate(date.getHours())
+                    let mins = plusDate(date.getMinutes())
+                    let secs = plusDate(date.getSeconds())
+                    return `${year}-${month}-${day} ${hours}:${mins}:${secs}`
+                },
+                format2: function(value,a,b){
+                    //对应：value->date, a->66, b->99
+                    return `${value} ++${a}+${b}`
+                }
+            },
+            methods:{
+                count:function(){
+                    this.countNum +=1
+                }
+            },
+            mounted: function () {
+                this.timer = setInterval(() => {
+                    this.date = new Date()
+                }, 1000);
+            },
+            beforeDestroy: function () {
+                if (this.timer) {
+                    clearInterval(this.timer)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
