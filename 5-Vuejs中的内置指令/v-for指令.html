@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        v-for:写在要遍历的元素上<br>
+        1）遍历多个对象：
+        <ul>
+            <li v-for="member in members">{{member.name}}--No.{{member.range}}</li>
+        </ul>
+        带索引的写法：括号第一个变量代表item，第二个代表index
+        <ul>
+            <li v-for="(member,index) in members">{{index+1}}---{{member.name}}</li>
+        </ul>
+        <hr>
+        2）遍历一个对象的多个属性:
+        <span v-for="value in sii"> -{{value}}</span><br>
+        拿到value,key,index的写法(顺序不可变)：
+        <div v-for="(value,key,index) in sii">第{{index+1}}个成员:--键是{{key}} --{{value}}</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                members: [
+                    { name: 'WZH', range: '5' },
+                    { name: 'XJQ', range: '7' },
+                    { name: 'LZY', range: '30' }
+                ],
+                sii:{
+                    girl1:'JY',
+                    girl2:'XZX',
+                    girl3:'SR'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

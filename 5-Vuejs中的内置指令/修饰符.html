@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        /* [v-cloak]: {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        .stop：阻止单击事件向上冒泡
+        <div @click="divclick" style="height: 100px;width: 100px;background: #ace;">
+            <button @click.stop="btnclick">点击</button>
+        </div>
+        <hr>
+        .self：只作用在元素本身，子元素事件被调用时不会发生冒泡
+        <div @click.self="divclick" style="height: 100px;width: 100px;background: #dad;">
+            <button @click.stop="btnclick">点击</button>
+        </div>
+        <hr>
+        .prevent：提交事件并且不重载页面
+        <form action="" @submit.prevent="handle">
+            <button type="submit">提交表单</button>
+        </form>
+        <hr>
+        .once:只执行一次
+        <button @click="onceMethod">执行N次</button>
+        <button @click.once="onceMethod">只执行1次</button><br>
+        监听键盘事件
+        <input @keyup.13="submitMe">
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {
+                divclick: function () {
+                    alert('div is clicked')
+                },
+                btnclick: function () {
+                    alert('button is clicked')
+                },
+                handle: function () {
+                    alert('不重载，也不刷新')
+                },
+                onceMethod: function () {
+                    alert('多少次了？')
+                },
+                submitMe: function () {
+                    alert('pressed Enter')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

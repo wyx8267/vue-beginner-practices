@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        v-if，后接等号，等号后内容须为布尔值:<br>
+        <p v-if="6<3">{{apple}}</p>
+        <p v-else-if="7>5">{{mango}}</p>
+        <p v-else>{{banana}}</p>
+        <hr>
+        v-if实例，对不想被复用的元素加入key即可解决：<br>
+        需求：点击按钮实现用户名输入框和密码输入框的切换
+        <div v-if="type==='name'">
+            用户名：<input type="text" placeholder="请输入用户名">
+        </div>
+        <div v-else>
+            密码：<input type="password" placeholder="请输入密码" key="psd">
+        </div>
+        <button v-on:click="toggleType">切换</button>
+        <hr>
+        <p v-show="7>5">v-show：显现与否取决于布尔值（此行显示即被渲染</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                apple:'apple',
+                banana:'banana',
+                mango:'mango',
+                type:'name'
+            },
+            methods:{
+                toggleType:function(){
+                    this.type = (this.type==='name' ? 'psd' : 'name')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

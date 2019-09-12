@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        /* [v-cloak]: {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        点击次数：{{count}}
+        <button @click="handle()">点击+1</button>
+        <button @click="handle(5)">点击+5</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods:{
+                handle:function(count){
+                    count = count || 1
+                    this.count += count
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

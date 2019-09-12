@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        操作数组方法：
+        <ul>
+            <li v-for="way in ways">{{way}}()</li>
+        </ul>
+        <hr>
+        <p>下方为操作数据</p>
+        <div v-for="item in arr">- {{item}}</div>
+        <button @click="sortArr">点击排序-从小到大</button>
+        <button @click="reverseArr">点击翻转数组</button>
+        <p>返回字符串中含有oo的项--{{matchOO}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                arr: ['book','notebook', 'pen', 'pencil'],
+                ways: ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse']
+            },
+            computed:{
+                matchOO:function(){
+                    return this.arr.filter(function (book){
+                        return book.match(/oo/)
+                    })
+                }
+            },
+            methods: {
+                sortArr: function () {
+                    this.arr.sort(function(a,b){
+                        return a.length - b.length
+                    })
+                },
+                reverseArr: function (a, b) {
+                    this.arr.reverse()
+                }
+            }
+        })
+        // Vue.set(app.arr,1,'car')
+    </script>
+</body>
+
+</html>

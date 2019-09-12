@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        /* [v-cloak]: {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        v-cloak: 解决初始化慢导致页面闪动<br />
+        <p v-cloak>{{msg}}</p><br />
+        <hr>
+        v-once:仅渲染一次<br />
+        <span v-once>{{oncedata}}</span>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '就算终点难以抵达，一路的轰鸣和崩塌',
+                oncedata: ' O X F O X'
+            }
+        })
+    </script>
+</body>
+
+</html>
