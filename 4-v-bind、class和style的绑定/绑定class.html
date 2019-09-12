@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .divStyle {
+            background-color: #7c7;
+            width: 100px;
+            height: 100px;
+        }
+
+        .borderStyle {
+            border: 5px solid #dad;
+        }
+
+        .btnBlue {
+            background-color: #ace;
+        }
+
+        .btnRed {
+            background-color: #f55;
+        }
+
+        .active {
+            background-color: #7c7;
+            width: 100px;
+            height: 100px;
+        }
+
+        .error {
+            border: 10px solid #f55;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        绑定class对象语法,对象的键是类名，值是布尔值<br />
+        <div :class="{divStyle:isActive,borderStyle:isBorder}"></div>
+        <hr />
+        <input type="button" value="点击切换背景" :class="{btnBlue:isBlue,btnRed:isRed}" @click="changeBg"><br />
+        绑定计算属性<div :class="classnames"></div>
+        <hr />
+        绑定class数组语法，数组成员直接对应类名<br />
+        <div :class="[activeClass,errorClass]">AAA</div>
+    </div>
+    <script>
+        //需求：点击按钮，来回切换背景色
+        var app1 = new Vue({
+            el: '#demo',
+            data: {
+                isActive: true,
+                isBorder: false,
+                isBlue: true,
+                isRed: false,
+                activeClass: 'active',
+                errorClass: 'error'
+            },
+            computed: {
+                classnames: function () {
+                    return {
+                        active: !this.isBorder && this.isActive 
+                    }
+                }
+            },
+            methods: {
+                changeBg: function () {
+                    this.isBlue = !this.isBlue
+                    this.isRed = !this.isRed
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

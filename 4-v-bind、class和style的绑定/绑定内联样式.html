@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        对象语法绑定内联样式，键代表style的属性，值代表属性的值<br />
+        命名注意：Vue中大写字母会被转换成‘-小写’<br />
+        <div :style="{'color':color,'fontSize':fontSize+'px'}">TEAM SII</div>
+        <hr/>
+        数组语法<br/>
+        <div :style="[styleA,styleB]">TEAM NII</div>
+    </div>
+    <script>
+        var app1 = new Vue({
+            el: '#demo',
+            data: {
+                color: '#ace',
+                fontSize: 26,
+                styleA:{
+                    backgroundColor: '#dad'
+                },
+                styleB: {
+                    color: '#fff',
+                    fontSize: '20px'
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
