@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        v-model的用法<br>
+        <input type="text" v-model="value">
+        {{value}}<br>
+        <textarea name="" id="" cols="50" rows="2" v-model="msg">我是多行文本的初始化值</textarea>{{msg}}
+        <hr>
+        单选框：<br>
+        单个单选框：<input type="radio" v-bind:checked="oneradio">(此处用v-model不生效<br>
+        多个单选框：------{{catname}}<br>
+        吴团团<input type="radio" value="吴团团" name="cat" v-model="catname">
+        钱胖胖<input type="radio" value="钱胖胖" name="cat" v-model="catname">
+        戴安娜<input type="radio" value="戴安娜" name="cat" v-model="catname">
+        <hr>
+        复选框：<br>
+        单个复选框<input type="checkbox" v-model="oneradio"><br>
+        多个复选框--现在选中了{{catnames}}<br>
+        吴团团<input type="checkbox" value="吴团团" v-model="catnames">
+        钱胖胖<input type="checkbox" value="钱胖胖" v-model="catnames">
+        戴安娜<input type="checkbox" value="戴安娜" v-model="catnames">
+        <hr>
+        单选下拉框：
+        <select v-model="selected">
+            <option value="吴团团">吴团团</option>
+            <option value="钱胖胖">钱胖胖</option>
+            <option value="戴安娜">戴安娜</option>
+        </select>---现在选中-{{selected}}<br>
+        多选下拉框：
+        <select v-model="selectedmul" multiple>
+            <option value="吴团团">吴团团</option>
+            <option value="钱胖胖">钱胖胖</option>
+            <option value="戴安娜">戴安娜</option>
+        </select>---现在选中-{{selectedmul}}
+        <hr>
+        绑定值：<br>
+        单选按钮：<input type="radio" v-model="picked" :value="value1">--{{picked}}<br>
+        <hr>
+        修饰符：<br>
+        .lazy:<input type="text" v-model.lazy="inputStr">{{inputStr}}<br>
+        .number:<input type="text" v-model.number="isNum">{{typeof isNum}}<br>
+        .trim:<input type="text" v-model.trim="trimStr">{{trimStr.split('').length}}
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                value: '',
+                msg: '',
+                oneradio: true,
+                catname: '',
+                catnames: [],
+                selected: '',
+                selectedmul: '',
+                picked: true,
+                value1: '111',
+                inputStr: '',
+                isNum: '',
+                trimStr: ''
+            }
+        })
+    </script>
+</body>
+
+</html>
