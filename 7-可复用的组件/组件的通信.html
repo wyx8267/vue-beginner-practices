@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" style="border:2px solid red;height: 300px;">
+        <h5 style="text-align:center">我是父组件</h5>
+        v-bind使用与否的区别
+        <child-component msg="[3,6,9]"></child-component>
+        <child-component :msg="[3,6,9]"></child-component>
+        <hr>
+        使用v-bind进行数据的动态绑定<br>
+        <input type="text" v-model="parentmsg">
+        <bind-component :msg="parentmsg"></bind-component>
+    </div>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data:{
+                parentmsg:'今晚月色真美'
+            },
+            components:{
+                'child-component':{
+                    props:['msg'],
+                    template:'<div style="border:2px solid green;height: 60px;">{{msg.length}}</div>'
+                },
+                'bind-component':{
+                    props:['msg'],
+                    template:'<div style="border:2px solid green;height: 60px;">{{msg}}</div>'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

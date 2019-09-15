@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            text-align: center;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <hr>
+        <my-component>
+            <p>
+                {{msg}}
+            </p>
+        </my-component>
+        <hr>
+        具名插槽：<br>
+        <name-component>
+            <h3 slot="header">标题</h3>
+            <p>正文内容</p>
+            <p>正文内容第二段</p>
+            <p slot="footer">底部信息</p>
+        </name-component>
+
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: '<div>\
+            <slot>\
+            若父组件没有插入内容，我默认出现\
+            </slot>\
+            </div>',
+            data: function () {
+                return {
+
+                }
+            }
+        })
+        Vue.component('name-component', {
+            template: '<div>\
+            <div class="header">\
+                <slot name="header"></slot>\
+            </div >\
+            <div class="container">\
+                <slot></slot>\
+            </div>\
+            <div class="footer">\
+                <slot name="footer"></slot>\
+            </div>\
+            </div>',
+            mounted:function(){
+                let header = this.$slots.header
+                let text = header[0].elm.innerText
+                console.log(header)
+                console.log(text)
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '父组件内容'
+            }
+        })
+    </script>
+</body>
+
+</html>

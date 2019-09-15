@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-component>
+            <!-- <template slot="a" slot-scope="prop">
+                {{prop.text}}
+                {{prop.name}}
+                {{prop.ss}}
+            </template> -->
+            <p slot="a" slot-scope="prop">
+                {{prop.text}}
+                {{prop.name}}
+                {{prop.ss}}
+            </p>
+        </my-component>
+
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: '<div>\
+            <slot text="子组件的数据" name="a" ss="456123">\
+            </slot>\
+            </div>',
+            data: function () {
+                return {
+
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '父组件内容'
+            }
+        })
+    </script>
+</body>
+
+</html>

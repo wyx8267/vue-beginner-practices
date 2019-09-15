@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            text-align: center;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <component :is="thisView"></component>
+        <button @click="handleView('A')">A</button>
+        <button @click="handleView('B')">B</button>
+        <button @click="handleView('C')">C</button>
+        <button @click="handleView('D')">D</button>
+
+    </div>
+    <script>
+        Vue.component('compA', {
+            template: '<div>心的旅程</div>',
+        })
+        Vue.component('compB', {
+            template: '<div>第48区</div>',
+        })
+        Vue.component('compC', {
+            template: '<div>重生计划</div>',
+        })
+        Vue.component('compD', {
+            template: '<div>时之卷</div>',
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                thisView: 'compA'
+            },
+            methods:{
+                handleView:function(tag){
+                    this.thisView = 'comp' + tag
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

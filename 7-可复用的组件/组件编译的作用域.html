@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            text-align: center;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-component v-show="show">{{msg}}</my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: '<div v-show="show">1111</div>',
+            data: function () {
+                return {
+                    msg: '子组件的内容',
+                    show:true
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg:'0000',
+                show:false
+            }
+        })
+    </script>
+</body>
+
+</html>
