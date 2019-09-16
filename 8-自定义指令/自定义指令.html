@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        自动获取焦点：<input type="text" v-focus><br>
+        不能自动获取焦点：<input type="text">
+        <hr>
+        <div v-demoon:senses.a.b.c="bluev"></div>
+    </div>
+    <script>
+        //需求：打开页面自动获取焦点
+        Vue.directive('focus', {
+            inserted: function (e) {
+                e.focus()
+            }
+        })
+        Vue.directive('demoon', {
+            bind: function (el, binding, vnode) {
+                let keys = []
+                for (let key in vnode){
+                    keys.push(key)
+                }
+                el.innerHTML =
+                    'name: ' + binding.name + '<br>' +
+                    'value: ' + binding.value + '<br>' +
+                    'expression: ' + binding.expression + '<br>' +
+                    'argument: ' + binding.arg + '<br>' +
+                    'modifiers: ' + JSON.stringify(binding.modifiers) + '<br>' +
+                    'keys in vnode: ' + keys.join("--") + '<br>'
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                abc: 'value',
+                bluev: '我是自定义指令所绑定的值'
+            }
+        })
+    </script>
+</body>
+
+</html>

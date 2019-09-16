@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+    <script>
+        Vue.component('child', {
+            //第二个参数--数据对象--只能是Object
+            render(createElement) {
+                return createElement({
+                    template:'<div>时间的歌</div>'
+                }, {
+                    class: {
+                        foo: true,
+                        buz: false
+                    },
+                    style: {
+                        color: '#ace',
+                        fontSize: '20px'
+                    },
+                    attrs:{
+                        id:'foo',
+                        src:'https://ff.sdo.com'
+                    },
+                    domProps:{
+                        //用来写原生DOM属性
+                        innerHTML:'<span style="color:#dad;font-size:16px;">重生计划</span>'
+                    }
+                })
+            }
+        })
+        var app = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
