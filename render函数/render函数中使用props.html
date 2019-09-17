@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="switchShow">我们JY</button>
+        <child :show="show"></child>
+    </div>
+    <script>
+        //需求：点击按钮切换图片
+        Vue.component('child', {
+            props: ['show'],
+            render(createElement) {
+                let imgsrc
+                if (this.show) {
+                    imgsrc = 'http://www.snh48.com/images/member/gs4_10004_2.jpg'
+                } else {
+                    imgsrc = 'http://www.snh48.com/images/member/gs4_10004_3.jpg'
+                }
+                return createElement('img', {
+                    attrs: {
+                        src: imgsrc
+                    },
+                    style: {
+                        width: '200px'
+                    }
+                })
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                show: false
+            },
+            methods: {
+                switchShow() {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

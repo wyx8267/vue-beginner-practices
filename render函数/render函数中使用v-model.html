@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <child :name="name" @input="showName"></child> -->
+        <child :name="name" v-model="name"></child>
+        <br>{{name}}
+    </div>
+    <script>
+        Vue.component('child', {
+            props: ['name'],
+            render(createElement) {
+                let self = this //指的是当前VUE实例
+                return createElement('input',{
+                    domProps:{
+                        value:self.name
+                    },
+                    on:{
+                        input(e){
+                            self.$emit('input',e.target.value)
+                        }
+                    }
+                })
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                name: 'MIRAI'
+            },
+            // methods:{
+            //     showName(value){
+            //         this.name = value
+            //     }
+            // }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid #000;
+            width: 600px;
+            height: 300px;
+            font-size: 16px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <p>逝者如斯，奔流不息，从不舍昼与夜</p>
+            <p>岁月啊，能否慢些，再慢些</p>
+            <h3 slot="header">时间的歌</h3>
+            <h5 slot="footer">这首歌关于时间</h5>
+        </child>
+    </div>
+    <script>
+        Vue.component('child', {
+            //第三个参数--子节点--可以是String | Array
+            render(createElement) {
+                let header = this.$slots.header
+                let main = this.$slots.default
+                let footer = this.$slots.footer
+                return createElement('div',[
+                    createElement('header',header),
+                    createElement('main',main),
+                    createElement('footer',footer)
+                ])
+            }
+        })
+        var app = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
